@@ -15,7 +15,9 @@ way. http://railscasts.com/episodes/103-site-wide-announcements
 
 Install
 ==============
+
 You need to create a migration with the following:
+----------------
 
   > script/generate migration Announcements
 
@@ -35,8 +37,13 @@ You need to create a migration with the following:
     end
   end
 
-Add routes:
+  > rake db:migrate
   
+Add routes:
+----------------
+  
+  > mate config/routes.rb
+
   ActionController::Routing::Routes.draw do |map| 
     ...
     map.announcements
@@ -44,6 +51,7 @@ Add routes:
   end 
   
 Add announcements to layout/view:
+----------------
 
   ...
   <%= display_announcements %>
