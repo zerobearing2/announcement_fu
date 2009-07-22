@@ -1,0 +1,66 @@
+AnnouncementFu
+==============
+
+Site wide announcements made easy. 
+
+I needed a way to provide site wide announcements for many different
+projects After searching around for a plugin that already encapsulated
+the announcement functionality, I realized there isn't much out there. So
+in true hacker fashion, I wrote my own.
+
+Inspired by Railscast Episode #103 - Thanks to Ryan Bates for show us the
+way. http://railscasts.com/episodes/103-site-wide-announcements
+
+
+
+Install
+==============
+You need to create a migration with the following:
+
+  > script/generate migration Announcements
+
+  class Announcements < ActiveRecord::Migration
+    def self.up
+      create_table :announcements, :force => true do |t| 
+        t.text :message  
+        t.datetime :starts_at
+        t.datetime :ends_at
+        t.timestamps
+      end
+      add_index :announcements, [:starts_at, :ends_at]
+    end
+
+    def self.down
+      drop_table :announcements
+    end
+  end
+
+Add routes:
+  
+  ActionController::Routing::Routes.draw do |map| 
+    ...
+    map.announcements
+    ...
+  end 
+  
+Add announcements to layout/view:
+
+  ...
+  <%= display_announcements %>
+  ...
+
+
+Configuration
+==============
+Default table that announcements are loaded.
+
+  AnnouncementFu::Base.config[:table] = "announcements"     # default setting
+  AnnouncementFu::Base.config[:hide_label] = "Close Notice"     # default setting
+
+You may override this default by setting AnnouncementFu::TABLE inside
+config/initializers or config/environment.rb, for example:
+
+  AnnouncementFu::Base.config[:table] = "notices"
+
+
+Copyright (c) 2009 zerobearing2, released under the MIT license

@@ -1,0 +1,14 @@
+sqlite:
+  :adapter: sqlite
+  :dbfile: vendor/plugins/announcement_fu/test/announcement_fu_plugin.sqlite.db
+
+sqlite3:
+  :adapter: sqlite3
+  :dbfile: vendor/plugins/announcement_fu/test/announcement_fu.sqlite3.db
+
+mysql:
+  :adapter: mysql
+  :host: localhost
+  :username: root
+  :password: password
+  :database: announcement_fu_plugin_test
