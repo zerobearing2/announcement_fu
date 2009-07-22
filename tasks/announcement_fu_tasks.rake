@@ -5,6 +5,11 @@ namespace :announcements do
     Announcement.clear
   end
   
+  desc "Console"
+  task :console => :environment do
+    AnnouncementFu::Console.new
+  end
+  
   desc "Create maint. announcement"
   task :create_maint => :environment do
     start_t = (ENV['start']||15.minutes.ago).to_time.utc
