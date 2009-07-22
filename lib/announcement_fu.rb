@@ -5,7 +5,8 @@ module AnnouncementFu
   class Base
     @@config = {
       :table => "announcements",
-      :hide_label => "Close Notice"
+      :header => "Attention:",
+      :hide_label => "[x] close"
     }
     cattr_accessor :config
   end

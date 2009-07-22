@@ -1,5 +1,7 @@
 ***********************************************************************************
-* CAUTION: this is very early development, pre-beta; not recommended for use yet! *
+*
+* CAUTION: this is very early development, pre-beta; not recommended for use yet! 
+*
 ***********************************************************************************
 
 Announcement Fu
@@ -62,14 +64,25 @@ Add announcements to layout/view:
   ...
 
 
+Add CSS styling (customize as needed):
+----------------
+
+  #announcement { position: absolute; z-index: 1000; left: 50%; top: 0px; width: 800px; margin-left: -400px; border: 1px solid #666; border-top: none; background-color: #FFDEDF; color: #501D00; padding: 5px; font-size: 1.1em; }
+  #announcement h1, #announcement h2, #announcement h3, #announcement h4, #announcement h5 { font-size: 1.1em; font-weight: bold; }
+  #announcement a { position: absolute; right: 5px; bottom: 5px; }
+
+
+
 Configuration
 ==============
-Default table that announcements are loaded.
+Default configurations:
+  {
+    :table => "announcements",
+    :header => "Attention:",
+    :hide_label => "[x] close"
+  }
 
-  AnnouncementFu::Base.config[:table] = "announcements"     # default setting
-  AnnouncementFu::Base.config[:hide_label] = "Close Notice"     # default setting
-
-You may override this default by setting AnnouncementFu::TABLE inside
+You may override this default by setting AnnouncementFu::Base.config inside
 config/initializers or config/environment.rb, for example:
 
   AnnouncementFu::Base.config[:table] = "notices"

@@ -59,7 +59,7 @@ module AnnouncementFu #:nodoc:
           Announcement.create!(:message => message, :starts_at => starts_at, :ends_at => ends_at)
           commands("l")
         else
-          puts "cancelling..."
+          puts "aborted"
         end
         
       when 'list', 'l'
@@ -67,6 +67,22 @@ module AnnouncementFu #:nodoc:
           puts "#{a.starts_at.localtime.to_s(:short)}\t#{a.ends_at.localtime.to_s(:short)}\tid:#{a.id}\t#{a.message[0,65]}..."
         end
         puts "================"
+
+      when 'clear', 'c'
+        if ["y","yes"].include? Readline.readline("clear all announcements? > ").to_s.downcase
+          Announcement.clear
+          puts "cleared all"
+        else
+          puts "aborted"
+        end
+        
+      when 'help', 'h'
+        puts "usage:\n=================="
+        puts "(h)elp \tHelp"
+        puts "(q)uit \tExit"
+        puts "(l)ist \tList announcements"
+        puts "(d)el \tDelete announcement by id #"
+        puts "(n)ew \tCreate new announcement"
 
       when 'quit', 'exit', 'bye', 'q', 'x'
         raise Interrupt.new("exiting...")
